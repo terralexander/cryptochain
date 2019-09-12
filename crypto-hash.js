@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const hexToBinary = require('hex-to-binary');
 
 // Below, ... (three dots) is a JS spread operator, all the arguments are added in a single array called inputs
 const cryptoHash = (...inputs) => {

@@ -38,12 +38,16 @@ class Blockchain {
 
             // Below, we use regenerate the hash using all the existing fields in the block to make sure that the hash that is presented is correct
             const actualLastHash = chain[i-1].hash;
+            const lastDifficulty = chain[i-1].difficulty;
 
             if (lastHash !== actualLastHash) return false;
 
             const validatedHash = cryptoHash(timestamp, lastHash, nonce, difficulty, data);
 
             if (hash !== validatedHash) return false;
+
+            // Below we verify that the difficulty hasn`t been changed by more than 1; Math.abs loop-function makes it that the jump verification goes both ways, increment and decrement
+            if (Math.abs(lastDifficulty - difficulty) > 1) return false;
         };
         
 
