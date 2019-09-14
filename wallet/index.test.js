@@ -1,5 +1,6 @@
 const Wallet = require('./index');
-const { verifySignature } = require('../utilities');
+const Transaction = require('./transaction');
+const { verifySignature } = require('../util');
 
 describe('Wallet', () => {
     let wallet;
@@ -14,7 +15,7 @@ describe('Wallet', () => {
 
     it('has a `publicKey`', () => {
 
-        //Bellow, we cat test the eliptic curve value which will have an x and an y as an output if the wallet/index.js doesn`t encode into hex (this.publicKey = keyPair.getPublic().encode('hex');)
+        //Bellow, we can test the eliptic curve value which will have an x and an y as an output if the wallet/index.js doesn`t encode into hex (this.publicKey = keyPair.getPublic().encode('hex');)
         //console.log(wallet.publicKey);
 
         expect(wallet).toHaveProperty('publicKey');
@@ -32,4 +33,34 @@ describe('Wallet', () => {
         });
     });
 
+    describe('createTransaction()', () => {
+        describe('and the amount exceeds the balance', () => {
+          it('throws an error', () => {
+            expect(() => wallet.createTransaction({ amount: 999999, recipient: 'foo-recipient' }))
+              .toThrow('Amount exceeds balance');
+          });
+        });
+    
+        describe('and the amount is valid', () => {
+          let transaction, amount, recipient;
+    
+          beforeEach(() => {
+            amount = 50;
+            recipient = 'foo-recipient';
+            transaction = wallet.createTransaction({ amount, recipient });
+          });
+    
+          it('creates an instance of `Transaction`', () => {
+            expect(transaction instanceof Transaction).toBe(true);
+          });
+    
+          it('matches the transaction input with the wallet', () => {
+            expect(transaction.input.address).toEqual(wallet.publicKey);
+          });
+    
+          it('outputs the amount the recipient', () => {
+            expect(transaction.outputMap[recipient]).toEqual(amount);
+          });
+        });
+    });
 });
