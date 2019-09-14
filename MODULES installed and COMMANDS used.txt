@@ -1,0 +1,78 @@
+code .
+// opens the code editor of your choice
+
+npm run test
+// runs all configured tests in the project
+
+mkdir folderName
+// creates a directory with the name folderName
+
+cd folderName
+// opens the directory with the name folderName
+
+$ npm i jest@23.6.0 --save-dev
+// adds libraries to folder/project and creates dependencies with the version 23.6.0 of JEST
+
+node fileName.js
+// opens a file with the name folderName
+
+clear
+// clears the screen of previous written code and generated results
+
+rd .git /S/Q
+// remove git repository associated with the project
+
+git init
+// creates local repository for current project
+
+git add .
+// prepares current files (new and/or moddified) to be commited into local repository
+
+git commit -m "Initial commit"
+// adds current files into local repository
+
+git push origin master
+// adds current files into online repository
+
+git push -f origin master
+// forcibly adds current files into online repository, by replacing files that have beed modified
+// not recommended for branching and should be used as a last case scenario (e.g.: files have beed modiffied directly in the online repository and you wish not to fetch/pull first before pushing)
+
+git status
+//shows which files have been modified and can be commited into local repository
+
+git log
+//shows which files have been commited into local repository
+
+npm i express@4.16.3 --save
+//install express in order to deploy an API
+
+npm i nodemon@1.18.4 --save-dev
+//engine that re-runs an app after updates, without have to manually re-run the entire app after adding new features
+
+npm i body-parser@1.18.3 --save
+//allows a request in JSON format
+
+npm run dev
+//starts the app in developer mode, as stated in the "start", inside the package.json
+
+npm i redis@2.8.0 --save
+//Install redis for this project (redis must 1st be installed on the machine - use Ubuntu bash to install using the commands in the redis documentation)
+
+npm i  cross-env@5.2.0 --save-dev
+// Cross set enviroment variable to sun server on multiple ports
+// Helpfull to start multiple block instances that interact with each other
+// Helpfull to run node.js on multiple machines, no mather what the OS
+// Helpfull to be able to use dev-peer command
+
+npm i request@2.88.0 --save
+//Offers the ability to send a HTTP request
+
+npm run dev-peer
+//starts a second instance of the app, in developer mode
+
+npm i elliptic@6.4.1 --save
+//creates a public key addresses based on a cryptographic private-public key pair
+
+npm i uuid@3.3.2 --save
+//provides a way to generate a truly unique value on the ID field 
