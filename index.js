@@ -41,7 +41,7 @@ app.post('/api/transact', (req, res) => {
 
     try {
         if (transaction) {
-            transaction.update({ senderWaller: wallet, recipient, amount });
+            transaction.update({ senderWallet: wallet, recipient, amount });
         } else {
             transaction = wallet.createTransaction({ recipient, amount });
         }
