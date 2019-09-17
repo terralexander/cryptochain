@@ -25,11 +25,14 @@ rd .git /S/Q
 git init
 // creates local repository for current project
 
-git add .
+git add -A
 // prepares current files (new and/or moddified) to be commited into local repository
 
 git commit -m "Initial commit"
 // adds current files into local repository
+
+git remote add origin https://RemoteName/Proj.git
+//Only for initial commit
 
 git push origin master
 // adds current files into online repository

@@ -164,11 +164,3 @@ describe('Transaction', () => {
         });
     });
 });
-
-    /*
-    describe('', () => {
-        it('', () => {
-            expect();
-        });
-    });
-    */
