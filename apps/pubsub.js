@@ -66,6 +66,8 @@ const CHANNELS = {
                 inputAddress: this.wallet.publicKey
               })) {
                 this.transactionPool.setTransaction(parsedMessage);
+              } else {
+                console.log('IGNORING TRANSACTION: broadcast received from self-publishing')
               }
               break;
             default:
