@@ -80,3 +80,34 @@ npm i elliptic@6.4.1 --save
 npm i uuid@3.3.2 --save
 //provides a way to generate a truly unique value on the ID field
 
+
+npm i && npm run dev
+//create the necessary dependencies to get the project going
+
+npm i react@16.6.0 react-dom@16.6.0 --save
+//install reactJs and react DOM and `save` to create dependencies
+
+
+npm i parcel-bundler@1.10.3 --save
+//bundler module for reactJS, used to serve react components into the browser
+
+npm audit
+// check for known vulnerabilities
+
+npm audit fix
+// fix knows vulnerabilities but beware that some functionalities might be affected
+
+npm run build-client
+//start building the client with parcel bundler, after it was declared in package.json
+
+npm run dev-client
+//start building the dev-client with parcel bundler, after it was declared in package.json, in order to not build every time but to open up our project in the browser immediatly to see the changes - we don`t even need to refresh the page
+
+npm i npm-run-all --save-dev
+// run-all as a dependency
+
+npm i babel-core@6.26.3 babel-plugin-transform-class-properties@6.24.1 babel-plugin-transform-object-rest-spread@6.26.0 babel-preset-env@1.7.0 babel-preset-react@6.24.1 --save
+// additional modules for reactJS that transform certain tags or functions that are deprecated and update them or give an output into the browser console on what the issue could be
+
+
+
