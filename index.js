@@ -69,23 +69,37 @@ app.get('/api/transaction-pool-map', (req, res) => {
     res.json(transactionPool.transactionMap);
   });
 
-  app.get('/api/mine-transactions', (req, res) => {
-    transactionMiner.mineTransactions();
+app.get('/api/mine-transactions', (req, res) => {
+transactionMiner.mineTransactions();
 
-    res.redirect('/api/blocks');
+res.redirect('/api/blocks');
+});
+
+app.get('/api/wallet-info', (req, res) => {
+const address = wallet.publicKey;
+
+res.json({ address, balance: Wallet.calculateBalance({ chain: blockchain.chain, address: wallet.publicKey }) })
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './client/dist/index.html'));
+});
+
+app.get('/api/known-addresses', (req, res) => {
+    const addressMap = {};
+  
+    for (let block of blockchain.chain) {
+      for (let transaction of block.data) {
+        const recipient = Object.keys(transaction.outputMap);
+  
+        recipient.forEach(recipient => addressMap[recipient] = recipient);
+      }
+    }
+  
+    res.json(Object.keys(addressMap));
   });
 
-  app.get('/api/wallet-info', (req, res) => {
-    const address = wallet.publicKey;
-    
-    res.json({ address, balance: Wallet.calculateBalance({ chain: blockchain.chain, address: wallet.publicKey }) })
-  });
-
-  app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, './client/dist/index.html'));
-  });
-
-const syncWithRootState = () => {
+  const syncWithRootState = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
             const rootChain = JSON.parse(body);
