@@ -109,5 +109,14 @@ npm i npm-run-all --save-dev
 npm i babel-core@6.26.3 babel-plugin-transform-class-properties@6.24.1 babel-plugin-transform-object-rest-spread@6.26.0 babel-preset-env@1.7.0 babel-preset-react@6.24.1 --save
 // additional modules for reactJS that transform certain tags or functions that are deprecated and update them or give an output into the browser console on what the issue could be
 
+npm i react-bootstrap@0.32.4 --save
+// boostrap for reactJS
+
+npm i react-router-dom@4.31.1 --save
+//split up a single page into various apps thru different endpoints called routes
+
+npm i history@4.7.2 --save
+// keep track of various routes where the user has navigated to
+
 
 
