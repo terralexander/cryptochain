@@ -8,7 +8,7 @@ const TransactionPool = require('./wallet/transaction-pool');
 const Wallet = require('./wallet');
 const TransactionMiner = require('./apps/transaction-miner');
 
-const isDevelopement = process.env.ENV === 'development';
+//const isDevelopment = process.env.ENV === 'development';
 
 const app = express();
 const blockchain = new Blockchain();
@@ -87,19 +87,29 @@ app.get('*', (req, res) => {
 
 app.get('/api/known-addresses', (req, res) => {
     const addressMap = {};
-  
+
+    console.log('BEFORE FOR');
+
     for (let block of blockchain.chain) {
+        console.log('FOR block');
       for (let transaction of block.data) {
+        console.log('FOR transaction');
         const recipient = Object.keys(transaction.outputMap);
-  
+
+        console.log('block', block);
+        console.log('transaction', transaction);
+        
         recipient.forEach(recipient => addressMap[recipient] = recipient);
       }
     }
-  
-    res.json(Object.keys(addressMap));
-  });
 
-  const syncWithRootState = () => {
+    console.log(block);
+    console.log(transaction);
+    
+    res.json(Object.keys(addressMap));
+});
+
+const syncWithRootState = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
             const rootChain = JSON.parse(body);
@@ -121,8 +131,6 @@ app.get('/api/known-addresses', (req, res) => {
         }
     });
 };
-
-if (isDevelopement) {
 
     const walletFoo = new Wallet();
     const walletBar = new Wallet();
@@ -164,8 +172,6 @@ if (isDevelopement) {
         transactionMiner.mineTransactions();
     }
     // Helper functions STOP
-
-}
 
 let PEER_PORT;
 
